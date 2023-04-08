@@ -23,7 +23,7 @@ int _myhistory(info_t *info)
 int unset_alias(info_t *info, char *str)
 {
 	char *p, c;
-	int ret;
+	int ret = -2;
 
 	p = _strchr(str, '=');
 	if (!p)
