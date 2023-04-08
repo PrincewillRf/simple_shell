@@ -10,6 +10,7 @@
 int _myexit(info_t *info)
 {
 	int exitcheck;
+        Int ret = -2;
 
 	if (info->argv[1])  /* If there is an exit arguement */
 	{
@@ -26,7 +27,7 @@ int _myexit(info_t *info)
 		return (-2);
 	}
 	info->err_num = -1;
-	return (-2);
+	return (ret);
 }
 
 /**
