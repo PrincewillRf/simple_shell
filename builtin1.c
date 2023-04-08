@@ -23,7 +23,7 @@ int _myhistory(info_t *info)
 int unset_alias(info_t *info, char *str)
 {
 	char *p, c;
-	int ret = -2;
+	int ret;
 
 	p = _strchr(str, '=');
 	if (!p)
@@ -111,5 +111,4 @@ int _myalias(info_t *info)
 			print_alias(node_starts_with(info->alias, info->argv[i], '='));
 	}
 
-	return (0);
-}
+	
