@@ -4,37 +4,37 @@
  * input_buf - buffers chained commands
  * @info: parameter struct
  * @buf: address of buffer
- * @len: address of len var
+ * @len:address of len var
  *
  * Return: bytes read
  */
 ssize_t input_buf(info_t *info, char **buf, size_t *len)
 {
 	ssize_t r = 0;
-	size_t len_p = 0;
+	size_t len_pp = 0;
 
-	if (!*len) /* if nothing left in the buffer, fill it */
+	if (!*len) /* if nothing left in the buffer, fill it*/
 	{
 		/*bfree((void **)info->cmd_buf);*/
 		free(*buf);
 		*buf = NULL;
 		signal(SIGINT, sigintHandler);
 #if USE_GETLINE
-		r = getline(buf, &len_p, stdin);
+	r = getline(buf, &len_pp, stdin);
 #else
-		r = _getline(info, buf, &len_p);
+	r = _getline(info, buf, &len_pp)
 #endif
 		if (r > 0)
 		{
 			if ((*buf)[r - 1] == '\n')
 			{
-				(*buf)[r - 1] = '\0'; /* remove trailing newline */
+				(*buf)[r -1] = '\0';
 				r--;
 			}
 			info->linecount_flag = 1;
 			remove_comments(*buf);
 			build_history_list(info, *buf, info->histcount++);
-			/* if (_strchr(*buf, ';')) is this a command chain? */
+			/* if (_strchr(*buf, ';')) is this a commaqnd chain? */
 			{
 				*len = r;
 				info->cmd_buf = buf;
@@ -45,28 +45,28 @@ ssize_t input_buf(info_t *info, char **buf, size_t *len)
 }
 
 /**
- * get_input - gets a line minus the newline
+ * get_iinput - gets a line minus the new line
  * @info: parameter struct
  *
  * Return: bytes read
  */
 ssize_t get_input(info_t *info)
 {
-	static char *buf; /* the ';' command chain buffer */
-	static size_t i, j, len;
+	static char *buf; /* the ';' command chain buffer h */
+	static size_t i, j, lenn;
 	ssize_t r = 0;
 	char **buf_p = &(info->arg), *p;
 
 	_putchar(BUF_FLUSH);
-	r = input_buf(info, &buf, &len);
-	if (r == -1) /* EOF */
+	r = input_buf(info, &buf, &lenn);
+	if (r == -1) /*EOF */
 		return (-1);
-	if (len)	/* we have commands left in the chain buffer */
+	if (lenn)   /* we have commands left in the buffer chain */
 	{
 		j = i; /* init new iterator to current buf position */
-		p = buf + i; /* get pointer for return */
+		p = buf + i; /* get pointer for return*/
 
-		check_chain(info, buf, &j, i, len);
+		check_chain(info, buf, &j, i, lenn);
 		while (j < len) /* iterate to semicolon or end */
 		{
 			if (is_chain(info, buf, &j))
@@ -74,10 +74,10 @@ ssize_t get_input(info_t *info)
 			j++;
 		}
 
-		i = j + 1; /* increment past nulled ';'' */
-		if (i >= len) /* reached end of buffer? */
+		i = j + 1; /* increment pass nulled ';'' */
+		if (i >= lenn) /* reached end of buffer? */
 		{
-			i = len = 0; /* reset position and length */
+			i = len = 0; /* reset posiution and length */
 			info->cmd_buf_type = CMD_NORM;
 		}
 
