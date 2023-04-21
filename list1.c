@@ -47,3 +47,40 @@ char *_strdup(const char *str)
 /**
  * _puts - displayed an input string
  * @str: the string to be displayed
+ *
+ * Return:nothing
+ */
+void_puts(char *str)
+{
+	int a = 0;
+
+	if(!str)
+		return;
+	while (str[a] != '\0')
+	{
+		_putchar(str[a]);
+		a++;
+	}
+}
+
+/**
+ * _putchar - write a character c to stdout
+ * @c: a character to display
+ *
+ * Return:1 for success.
+ * for error, -1 is returned, and error is set appropriately.
+ */
+int _putchar(char c)
+{
+	static int a;
+	static char buf[WRITE_BUF_SIZE];
+
+	if (c == BUF_FLUSH || a >= WRITE_BUF_SIZE)
+	{
+		write(1, buf, a);
+		a = 0;
+	}
+	if (c != BUF_FLUSH)
+		buf[a++] = c;
+	return (1);
+}
