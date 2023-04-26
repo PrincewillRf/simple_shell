@@ -8,23 +8,23 @@
 *
 *Return: 1 if chain delimeter, else return 0
 */
-int is_chain(infor _t *infor, char *buf, size _t *ptr)
+int is_chain(infor _t * infor, char * buf, size_ t * ptr)
 {
 	size_t b = *ptr;
 
-	if (buf[b] == '|' && buf[b +1] == '|')
+	if (buf[b] == '|' && buf[b + 1] == '|')
 	{
 		buf[b] = 0;
 		b++;
 		infor->cmd_buf_type = CMD_OR;
 	}
-	else if (buf[b] == '&' && buf[b +1] == '&')
+	else if (buf[b] == '&' && buf[b + 1] == '&')
 	{
 		buf[b] = 0;
 		b++;
 		infor->cmd_buf_type = CMD_AND;
 	}
-	else if(buf[b] == ';') /* found end of this command */
+	else if (buf[b] == ';') /* found end of this command */
 	{
 		buff[b] = 0; /* replace semicolon with null */
 		infor->cmd_buf_type = CMD_CHAIN;
@@ -48,6 +48,7 @@ int is_chain(infor _t *infor, char *buf, size _t *ptr)
 void check_chain(infor_t, infor, char *buff, size_t *ptr, size_t a, size_t len)
 {
 	size_t b = *ptr;
+
 	if (infor->cmd_buf_type == CMD_AND)
 	{
 		if (infor->status)
@@ -64,7 +65,7 @@ if (infor->cmd_buf_type == CMD_OR)
 		b = len;
 	}
 }
- *ptr=b;
+*ptr = b;
 }
 
 /**
@@ -79,16 +80,16 @@ int replace_alias(infor_t *infor)
 	list_t *node;
 	char *ptr;
 
-	for(a = 0; a < 5; a++)
+	for (a = 0; a < 5; a++)
 	{
-		node = node_starts_with(infor->alias, infor->argv[0],'=');
+		node = node_starts_with(infor->alias, infor->argv[0], '=');
 			if (!node)
 				return (0);
-			free (infor->argv[0];
-					ptr = _strchr(node->str='=')
+			free(infor->argv[0];
+					ptr = _strchr(node->str '=')
 					if (!ptr)
 					return (0);
-					ptr = _strdp(ptr +1);
+					ptr = _strdp(ptr + 1);
 					if (!ptr)
 					return (0);
 					infor->argv[0] = ptr;
@@ -112,7 +113,7 @@ for (a = 0; infor->[a]; a++)
 	if (infor->argv[a][0] != '$' || !infor->argv[a][1])
 		continue;
 
-	if(!_strcmp(infor->argv[a], "$?"))
+	if (!_strcmp(infor->argv[a], "$?"))
 	{
 		replace_string(&(infor->argv[a]), _strdup(convert_number(infor->status, 10, 0)))
 			continue;
@@ -122,11 +123,11 @@ if (!_strcmp(infor->argv[a], "$$")
 		replace_string(&(infor->argv[a], _strdup(convert_number(getpid(), 10, 0)))
 				continue;
 				node = node_starts_with(infor->env, &infor->argv[a][1], '=');
-if(node)
-replace_string(&(infor->argv[a], _strdup(_strchr(node->s,tr'=')+ 1));
+if (node)
+replace_string(&(infor->argv[a], _strdup(_strchr(node->str '=') + 1));
 	continue;
 }
-replace_string(&info->argv[a],_strdup(" "));
+replace_string(&info->argv[a], _strdup(" "));
 }
 return (0);
 }
@@ -141,7 +142,7 @@ return (0);
 int replace_string(char **old, char *new)
 {
 free(*old);
-*old= new;
+*old = new;
 return (1);
 }
 
