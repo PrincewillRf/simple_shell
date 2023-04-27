@@ -55,7 +55,7 @@ struct sep_list *next;
 } sepe_list;
 
 typedef struct lin_list_s
-{
+333{
 char *line;
 struct line_list_s *next;
 } lin_list;
@@ -171,5 +171,50 @@ void cd_prev(data_shell *datashell);
 void cd_to_hom(data_shell *datashell);
 /* cd_shell.c */
 int cd_shel(data_shell *datashell);
+
+/* get_builtin */
+int (*get_biltin(char *cmd))(data_shell *datashell);
+
+/* _exit.c */
+int exit_shell(data_shell *datashe);
+
+/* aux_stilib.c */
+int get_leng(int num);
+char *aux_itoa(int num);
+int _atoi(char *str);
+
+/* aux_error1.c */
+char *strcat_cd(data_shell *, char *, char *, char *);
+char *eror_get_cd(data_shell *datashell);
+char *eror_not_fond(data_shell *datashell);
+char *eror_exit_shel(data_shell *datashell);
+
+/* aux_eror2.c */
+char *eror_get_alias(char **args);
+char *eror_env(data_shell *datashell);
+char *eror_syntax(char **args);
+char *eror_permis(char **args);
+char *eror_path_125(data_shell *datashell);
+
+/* get_error.c */
+int get_eror(data_shell *datashell, int evalu);
+
+/* get_sigint.c */
+void get_signit(int sign);
+
+/* aux_help.c */
+void aux_help_env(void);
+void aux_help_setenv(void);
+void aux_help_unsetenv(void);
+void aux_help_general(void);
+void aux_help_cd(void);
+
+/* aux_help2.c */
+void aux_help(void);
+void aux_help_alias(void);
+void aux_help_cd(void);
+
+/* get_help.c */
+int get_help(data_shell *datashell);
 
 #endif
