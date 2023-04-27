@@ -17,7 +17,7 @@
 /* for read/write buffers */
 #define BUF_SIZE 1024
 #define TOK_BUFSIZE 128
-#define TOK_DELIM " \t\r\n\a\"
+#define TOK_DELIM " \t\r\n\a\\"
 
 /* Point to array of pointer to strings called environment */
 extern char **environ;
