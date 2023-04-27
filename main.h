@@ -89,9 +89,9 @@ typedef struct builtin
 } builtin_table;
 
 /* toem_lists.c */
-sepe_list *add_node(sepe_list **head,  char sepe);
-void free_sepe_list(sepe_list **head);
-lin_list *add_node_end(lin_list **head, char lin);
+sep_list *add_node(sep_list **head,  char sep);
+void free_sepe_list(sep_list **head);
+line_list *add_node_end(line_list **head, char line);
 void free_list(lin_list **head);
 
 /* toem_lists1.c */
