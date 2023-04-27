@@ -1,3 +1,3 @@
-This shell project 
+This is a simple shell project 
 0x16. C - Simple Shell Project
-collaborators: yusuf and Princewill
+collaborators: Ojo Yusuf and Princewill
